@@ -56,6 +56,7 @@ render() {
   return (
     <div>
       <h1>Book List</h1>
+      <table>
       <thead>
             <tr>
               <th>ID</th>
@@ -67,6 +68,7 @@ render() {
           <tbody>
             {this.createList()}
           </tbody>
+      </table>
     </div>
   );
 }

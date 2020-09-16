@@ -74,26 +74,32 @@ updateBook(id, title, author, read) {
   })
 }
 
-searchBookByID(id) {
+IDsearch(id) {
   axios.get(`https://cors-anywhere.herokuapp.com/https://agile-reaches-34490.herokuapp.com/booklist/${id}`)
-  .then(function (response) {
-    console.log(response);
+  .then((response) => {
+    console.log("Book List search update response is", response)
+    const search = response.data
+    let array = [search]
+    console.log("assigned search variable is:", array)
+    this.setState(() => ({
+      books: array
+    }))
+    console.log("books array is: ", this.state.books)
   })
-  .then = (response) => {
-    this.updateBookList(response);
   }
-}
 
 render() {
   return (
     <>
     <BookList books={this.state.books}/>
-    <SearchBook onSubmit={ (id) => this.searchBookByID(id)} />
-    <AddBook onSubmit={ (id, title, author, read) => this.newBook(id, title, author, read)} />
-    <br></br>
     <Form>
     <Button onClick={this.grabList}>Update List</Button>
     </Form>
+    <h3>Book Search</h3>
+    <SearchBook onSubmit={ (id) => this.IDsearch(id)} />
+    <h3>Add Book to List</h3>
+    <AddBook onSubmit={ (id, title, author, read) => this.newBook(id, title, author, read)} />
+    <br></br>
     <h4>Edit Book Entry</h4>
     <AddBook onSubmit={ (id, title, author, read) => this.updateBook(id, title, author, read)} />
     <h4>Delete Book</h4>

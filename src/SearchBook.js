@@ -6,7 +6,10 @@ class SearchBook extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            id: 0,
+            title: "",
+            author: "",
+            read: false
         }
     }
 

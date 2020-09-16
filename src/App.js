@@ -2,11 +2,13 @@ import React from 'react';
 import BookList from './BookList'
 import AddBook from './AddBook'
 import DeleteBook from './DeleteBook'
+import UpdateBook from './UpdateBook'
 import SearchBook from './SearchBook'
 import { ApiClient } from './ApiClient'
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -15,8 +17,8 @@ class App extends React.Component {
           books: [
             {
           "id": 0,
-          "title": "Finn Flamerider",
-          "author": "Tim Norwood",
+          "title": "Loading...",
+          "author": "",
           "read": false
         }
       ]
@@ -49,6 +51,9 @@ newBook(id, title, author, read) {
         read: read
     }
     )
+    .then((response) => {
+      this.grabList(response);
+    })
 }
 
 deleteBook(id) {
@@ -57,10 +62,13 @@ deleteBook(id) {
         id: id
     }
     )
+    .then((response) => {
+      this.grabList(response);
+    })
 }
 
 updateBook(id, title, author, read) {
-  return axios.put(`https://cors-anywhere.herokuapp.com/https://agile-reaches-34490.herokuapp.com/booklist/${id}`,
+  axios.put(`https://cors-anywhere.herokuapp.com/https://agile-reaches-34490.herokuapp.com/booklist/${id}`,
   {
       title: title,
       author: author, 
@@ -71,6 +79,9 @@ updateBook(id, title, author, read) {
   .catch(function (error) {
     console.error(error);
     alert(error)
+  })
+  .then((response) => {
+    this.grabList(response);
   })
 }
 
@@ -84,24 +95,29 @@ IDsearch(id) {
     this.setState(() => ({
       books: array
     }))
-    console.log("books array is: ", this.state.books)
   })
   }
+
+componentDidMount(){
+  this.grabList()
+}
 
 render() {
   return (
     <>
     <BookList books={this.state.books}/>
-    <Form>
-    <Button onClick={this.grabList}>Update List</Button>
-    </Form>
+    <br></br>
     <h3>Book Search</h3>
     <SearchBook onSubmit={ (id) => this.IDsearch(id)} />
+    <br></br>
+    <Form><Button onClick={this.grabList}>Display Entire List</Button></Form>
+    <br></br>
     <h3>Add Book to List</h3>
     <AddBook onSubmit={ (id, title, author, read) => this.newBook(id, title, author, read)} />
     <br></br>
     <h4>Edit Book Entry</h4>
-    <AddBook onSubmit={ (id, title, author, read) => this.updateBook(id, title, author, read)} />
+    <UpdateBook onSubmit={ (id, title, author, read) => this.updateBook(id, title, author, read)} />
+    <br></br>
     <h4>Delete Book</h4>
     <DeleteBook onSubmit={ (id) => this.deleteBook(id)} />
     </>

@@ -50,9 +50,8 @@ render() {
                     <Form.Control name="author" type="text" value={this.state.author} onChange={(e) => this.handleChange(e)}></Form.Control>
                 </Form.Group>
                 <Form.Group controlId="read">
-                    <Form.Check name="read" type="checkbox" label="read" value={this.state.read} onChange={(e) => this.handleChange(e)} />
+                    <Form.Check name="read" type="checkbox" label="Tick to mark as Read; leave blank to mark as Unread" value={this.state.read} onChange={(e) => this.handleChange(e)} />
                 </Form.Group>
-
                 <Button variant="primary" type="submit">
                     Edit Book Entry
                 </Button>

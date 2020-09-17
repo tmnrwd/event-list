@@ -88,10 +88,8 @@ updateBook(id, title, author, read) {
 IDsearch(id) {
   axios.get(`https://cors-anywhere.herokuapp.com/https://agile-reaches-34490.herokuapp.com/booklist/${id}`)
   .then((response) => {
-    console.log("Book List search update response is", response)
     const search = response.data
     let array = [search]
-    console.log("assigned search variable is:", array)
     this.setState(() => ({
       books: array
     }))

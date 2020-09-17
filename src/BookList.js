@@ -55,7 +55,7 @@ class BookList extends React.Component {
 render() {
   return (
     <div>
-      <h1>Book List</h1>
+      <h1>The Book List</h1>
       <table>
       <thead>
             <tr>

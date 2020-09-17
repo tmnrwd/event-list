@@ -37,10 +37,6 @@ render() {
         return (
             <>
             <Form onSubmit={(e) => this.submitHandler(e)}>
-                <Form.Group controlId="taskID">
-                    <Form.Label>Book ID</Form.Label>
-                    <Form.Control name="id" type="number" value={this.state.id} onChange={(e) => this.handleChange(e)}></Form.Control>
-                </Form.Group>
                 <Form.Group controlId="title">
                     <Form.Label>Title</Form.Label>
                     <Form.Control name="title" type="text" value={this.state.title} onChange={(e) => this.handleChange(e)}></Form.Control>
@@ -52,7 +48,6 @@ render() {
                 <Form.Group controlId="read">
                     <Form.Check name="read" type="checkbox" label="read" value={this.state.read} onChange={(e) => this.handleChange(e)} />
                 </Form.Group>
-
                 <Button variant="primary" type="submit">
                     Add Book
                 </Button>

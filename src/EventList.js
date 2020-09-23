@@ -97,6 +97,9 @@ class EventList extends React.Component {
             {current.time}
           </td>
           <td>
+            {current._id}
+          </td>
+          <td>
           <button onClick={() => this.deleteEvent(current._id)}>Delete</button>
           </td>
         </tr>
@@ -121,6 +124,9 @@ class EventList extends React.Component {
             {current.time}
           </td>
           <td>
+            {current.id}
+          </td>
+          <td>
           <button onClick={() => this.deleteEvent(current._id)}>Delete</button>
           </td>
         </tr>
@@ -142,6 +148,7 @@ class EventList extends React.Component {
                 <td>Precis</td>
                 <td>Date</td>
                 <td>Time</td>
+                <td>ID</td>
                 <td>Delete</td>
               </tr>
               </thead>

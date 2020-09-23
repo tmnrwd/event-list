@@ -21,7 +21,7 @@ class App extends React.Component {
 
   logout = (token) => {
     this.setState({ token: undefined })
-    window.localStorage.setItem("token", token);
+    window.localStorage.removeItem("token");
   }
 
  render() {

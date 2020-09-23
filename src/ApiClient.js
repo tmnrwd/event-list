@@ -1,6 +1,10 @@
 import axios from 'axios'
-const url = 'http://localhost:3000/eventlist/'
-const urlshort = 'http://localhost:3000/'
+
+const url = 'https://mysterious-castle-32998.herokuapp.com/eventlist/'
+const urlshort = 'https://mysterious-castle-32998.herokuapp.com/'
+
+//const url = 'http://localhost:3000/eventlist/'
+//const urlshort = 'http://localhost:3000/'
 
 export class ApiClient {
   constructor(tokenProvider, logoutHandler) {
@@ -9,6 +13,7 @@ export class ApiClient {
   }
 
   async login(username, password) {
+    console.log(username, password)
     return await axios({
       method: 'post',
       url: `${urlshort}auth`,

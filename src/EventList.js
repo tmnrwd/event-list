@@ -1,10 +1,8 @@
 import React from 'react';
 import AddEvent from './AddEvent'
-import DeleteEvent from './DeleteEvent'
 import UpdateEvent from './UpdateEvent'
-import SearchEvent from './SearchEvent'
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 
 class EventList extends React.Component {
   constructor(props) {
@@ -84,9 +82,6 @@ class EventList extends React.Component {
       return eventList.map((current) => (
         <tr key={current._id}>
           <td>
-            {current._id}
-          </td>
-          <td>
             {current.name}
           </td>
           <td>
@@ -100,15 +95,16 @@ class EventList extends React.Component {
           </td>
           <td>
             {current.time}
+          </td>
+          <td>
+          <button onClick={() => this.deleteEvent(current._id)}>Delete</button>
           </td>
         </tr>
       ))
     } else {
       return this.events.map((current) => (
         <tr key={current.id}>
-          <td>
-            {current.id}
-          </td>
+          
           <td>
             {current.name}
           </td>
@@ -123,6 +119,9 @@ class EventList extends React.Component {
           </td>
           <td>
             {current.time}
+          </td>
+          <td>
+          <button onClick={() => this.deleteEvent(current._id)}>Delete</button>
           </td>
         </tr>
       )
@@ -135,36 +134,28 @@ class EventList extends React.Component {
       <>
         <div>
           <h1>The Event List</h1>
-          <table>
+          <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Precis</th>
-                <th>Date</th>
-                <th>Time</th>
+                <td>Name</td>
+                <td>Location</td>
+                <td>Precis</td>
+                <td>Date</td>
+                <td>Time</td>
+                <td>Delete</td>
               </tr>
-            </thead>
+              </thead>
             <tbody>
               {this.createList()}
             </tbody>
-          </table>
+          </Table>
         </div>
-        <br></br>
-        <h3>Event Search</h3>
-        <SearchEvent onSubmit={(id) => this.IDsearch(id)} />
-        <br></br>
-        <Form><Button onClick={this.grabList}>Display Entire List</Button></Form>
-        <br></br>
+<br></br>
         <h3>Add Event to List</h3>
         <AddEvent onSubmit={(id, name, location, precis, date, time) => this.createEvent(id, name, location, precis, date, time)} />
         <br></br>
         <h4>Edit Event Entry</h4>
         <UpdateEvent onSubmit={(id, name, location, precis, date, time) => this.updateEvent(id, name, location, precis, date, time)} />
-        <br></br>
-        <h4>Delete Event</h4>
-        <DeleteEvent onSubmit={(id) => this.deleteEvent(id)} />
         <br></br>
         <Button onClick= {this.props.logout} >Logout</Button>
       </>
